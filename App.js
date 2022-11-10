@@ -74,8 +74,13 @@ const App = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
+        <Text style={styles.highlight}>TextInput (Email)</Text>
         <TextInput label="Email" placeholder="Escriu el teu email: " />
-        <View
+        <View>
+        <Text style={styles.highlight}>Button (amb text i icona)</Text> 
+        </View>
+        
+        {/* <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
@@ -93,7 +98,7 @@ const App = () => {
             Read the docs to discover what to do next:
           </Section>
           <LearnMoreLinks />
-        </View>
+        </View> */}
       </ScrollView>
     </SafeAreaView>
   );
@@ -116,6 +121,9 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
+  myForm:{
+    fontWeight: '2000'
+  }
 });
 
 export default App;
