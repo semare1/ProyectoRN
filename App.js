@@ -16,10 +16,9 @@ import {
   StyleSheet,
   Text,
   useColorScheme,
-  View,
-  Button,
+  View
 } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { TextInput, Button, Switch, Chip, Surface } from 'react-native-paper';
 
 import {
   Colors,
@@ -64,6 +63,9 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+  const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -74,12 +76,31 @@ const App = () => {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
-        <Text style={styles.highlight}>TextInput (Email)</Text>
+        <Text style={styles.mio}>TextInput (Email)</Text>
         <TextInput label="Email" placeholder="Escriu el teu email: " />
         <View>
-        <Text style={styles.highlight}>Button (amb text i icona)</Text> 
+          <Text style={styles.mio}>Buttons(amb text i icona)</Text>
+          <Button icon="alien" mode="contained" onPress={() => console.log('Pressed')}>Alien</Button>
+          <Button icon="alien" mode="contained" onPress={() => console.log('Pressed')}>Alien</Button>
+          <Button icon="alien" mode="contained-tonal" onPress={() => console.log('Pressed')}>Alien</Button>
+          <Button icon="alien" mode="contained-tonal" onPress={() => console.log('Pressed')}>Alien</Button>
+
+
+          <Text style={styles.mio}>Switch Necessites un descans?</Text>
+          <Switch value={isSwitchOn} onValueChange={onToggleSwitch} />
+          <Text style={styles.mio}>Botó dins d´un component Surface?</Text>
+          <Surface style={styles.surface} elevation={4}>
+            <Button icon="alien" mode="outlined" onPress={() => console.log('Pressed')}>Alien</Button>
+          </Surface>
+          <Text style={styles.mio}>Provant Chips</Text>
+          <View style={styles.chips}>
+            <Chip icon="web" onPress={() => console.log('Pressed')}>Internet</Chip>
+            <Chip icon="wifi" onPress={() => console.log('Pressed')}>Wifi</Chip>
+          </View>
+
+
         </View>
-        
+
         {/* <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -121,9 +142,20 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
-  myForm:{
-    fontWeight: '2000'
+  mio: {
+    color: "black",
+    marginTop: 18,
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  chips: {
+    marginLeft:10,
+    marginTop:110,
+    width:300,
+    bottom:100,
+    flexDirection:'row',
   }
+
 });
 
 export default App;
