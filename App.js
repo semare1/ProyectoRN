@@ -18,7 +18,7 @@ import {
   useColorScheme,
   View
 } from 'react-native';
-import { TextInput, Button, Switch, Chip, Surface } from 'react-native-paper';
+import { Provider as PaperProvider, TextInput, Button, Switch, Chip, Surface } from 'react-native-paper';
 
 import {
   Colors,
@@ -56,6 +56,17 @@ const Section = ({ children, title }) => {
   );
 };
 
+const saluda = (textAMostrar) => { return (<Text style={{ color: 'blue', fontSize: 25 }}> Hola {textAMostrar}</Text>); };
+
+const saluda2 = () => {
+  return (
+    <View>
+      {saluda('Duende')}
+      {saluda('Venom')}
+    </View>
+  )
+}
+
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -63,65 +74,16 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
-  const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
-
+  const isMarvel = true;
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <Text style={styles.mio}>TextInput (Email)</Text>
-        <TextInput label="Email" placeholder="Escriu el teu email: " />
-        <View>
-          <Text style={styles.mio}>Buttons(amb text i icona)</Text>
-          <Button icon="alien" mode="contained" onPress={() => console.log('Pressed')}>Alien</Button>
-          <Button icon="alien" mode="contained" onPress={() => console.log('Pressed')}>Alien</Button>
-          <Button icon="alien" mode="contained-tonal" onPress={() => console.log('Pressed')}>Alien</Button>
-          <Button icon="alien" mode="contained-tonal" onPress={() => console.log('Pressed')}>Alien</Button>
-
-
-          <Text style={styles.mio}>Switch Necessites un descans?</Text>
-          <Switch value={isSwitchOn} onValueChange={onToggleSwitch} />
-          <Text style={styles.mio}>Botó dins d´un component Surface?</Text>
-          <Surface style={styles.surface} elevation={4}>
-            <Button icon="alien" mode="outlined" onPress={() => console.log('Pressed')}>Alien</Button>
-          </Surface>
-          <Text style={styles.mio}>Provant Chips</Text>
-          <View style={styles.chips}>
-            <Chip icon="web" onPress={() => console.log('Pressed')}>Internet</Chip>
-            <Chip icon="wifi" onPress={() => console.log('Pressed')}>Wifi</Chip>
-          </View>
-
-
-        </View>
-
-        {/* <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Primer pas">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="Mira els teus canvis">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View> */}
-      </ScrollView>
-    </SafeAreaView>
+    <PaperProvider>
+      {/*{isMarvel ? saluda('Spider Man') : saluda('Sergio')}
+       {saluda('IronMan')}
+    {saluda('Spiderman')}
+    {saluda('DoctorStrange')} */}
+    {isMarvel&&saluda('SpiderMan')}
+    {saluda2()}
+    </PaperProvider>
   );
 };
 
@@ -149,11 +111,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   chips: {
-    marginLeft:10,
-    marginTop:110,
-    width:300,
-    bottom:100,
-    flexDirection:'row',
+    marginLeft: 10,
+    marginTop: 110,
+    width: 300,
+    bottom: 100,
+    flexDirection: 'row',
   }
 
 });
